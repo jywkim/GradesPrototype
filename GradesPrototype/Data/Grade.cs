@@ -142,28 +142,18 @@ namespace GradesPrototype.Data
     }
 
     // TODO: Exercise 1: Task 2a: Inherit from the User class
-    public class Student: IComparable<Student>
+    public class Student : User, IComparable<Student>
     {
         public int StudentID { get; set; }
 
         // TODO: Exercise 1: Task 2b: Remove the UserName property (now inherited from User)
-        public string UserName { get; set; }
+        
 
         // TODO: Exercise 1: Task 2c: Remove the Password property (now inherited from User)
-        private string _password = Guid.NewGuid().ToString(); // Generate a random password by default
-        public string Password
-        {
-            set
-            {
-                _password = value;
-            }
-        }
+        
 
         // TODO: Exercise 1: Task 2d: Remove the VerifyPassword method (now inherited from User)
-        public bool VerifyPassword(string pass)
-        {
-            return (String.Compare(pass, _password) == 0);
-        }
+        
 
         public int TeacherID { get; set; }
         public string FirstName { get; set; }
@@ -222,28 +212,18 @@ namespace GradesPrototype.Data
     }
 
     // TODO: Exercise 1: Task 2e: Inherit from the User class
-    public class Teacher
+    public class Teacher : User
     {
         public int TeacherID { get; set; }
 
         // TODO: Exercise 1: Task 2f: Remove the UserName property (now inherited from User)
-        public string UserName { get; set; }
+        
 
         // TODO: Exercise 1: Task 2g: Remove the Password property (now inherited from User)
-        private string _password = Guid.NewGuid().ToString(); // Generate a random password by default
-        public string Password
-        {
-            set
-            {
-                _password = value;
-            }
-        }
+        
 
         // TODO: Exercise 1: Task 2h: Remove the VerifyPassword method (now inherited from User)
-        public bool VerifyPassword(string pass)
-        {
-            return (String.Compare(pass, _password) == 0);
-        }
+       
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
