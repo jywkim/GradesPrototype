@@ -11,12 +11,10 @@ namespace GradesPrototype.Data
     public enum Role { Teacher, Student };
 
     // WPF Databinding requires properties
-
     public class Grade
     {
         public int StudentID { get; set; }
 
-        // TODO: Exercise 2: Task 2a: Add validation to the AssessmentDate property
         private string _assessmentDate;
         public string AssessmentDate
         {
@@ -32,14 +30,14 @@ namespace GradesPrototype.Data
                 // Verify that the user has provided a valid date
                 if (DateTime.TryParse(value, out assessmentDate))
                 {
-                    // Check that the date is no later than the current date
+                    // Check that the date is no later than the current date.                    
                     if (assessmentDate > DateTime.Now)
                     {
                         // Throw an ArgumentOutOfRangeException if the date is after the current date
                         throw new ArgumentOutOfRangeException("AssessmentDate", "Assessment date must be on or before the current date");
                     }
 
-                    // If the date is valid, then save it in the appropriate format
+                    // If the date is valid, then save it in the appropriate format.
                     _assessmentDate = assessmentDate.ToString("d");
                 }
                 else
@@ -50,7 +48,6 @@ namespace GradesPrototype.Data
             }
         }
 
-        // TODO: Exercise 2: Task 2b: Add validation to the SubjectName property
         private string _subjectName;
         public string SubjectName
         {
@@ -59,12 +56,12 @@ namespace GradesPrototype.Data
                 return _subjectName;
             }
 
-            set
-            {
+            set 
+            { 
                 // Check that the specified subject is valid
                 if (DataSource.Subjects.Contains(value))
                 {
-                    // If the subject is valid store the subject name
+                    // If the subject is valid store the subject name 
                     _subjectName = value;
                 }
                 else
@@ -75,7 +72,6 @@ namespace GradesPrototype.Data
             }
         }
 
-        // TODO: Exercise 2: Task 2c: Add validation to the Assessment property
         private string _assessment;
         public string Assessment
         {
@@ -87,8 +83,8 @@ namespace GradesPrototype.Data
             set
             {
                 // Verify that the grade is in the range A+ to E-
-                // Use a regular expression: a single character in the range A-E at the start of the string followed by an optional + or – at the end of the string
-                Match matchGrade = Regex.Match(value, @"[A-E][+-]?$");
+                // Use a regular expression: A single character in the range A-E at the start of the string followed by an optional + or - at the end of the string
+                Match matchGrade = Regex.Match(value, @"^[A-E][+-]?$");
                 if (matchGrade.Success)
                 {
                     _assessment = value;
@@ -96,7 +92,7 @@ namespace GradesPrototype.Data
                 else
                 {
                     // If the grade is not valid then throw an ArgumentOutOfRangeException
-                    throw new ArgumentOutOfRangeException("Assessment", "Assessment grade must be in the range of A+ to E-");
+                    throw new ArgumentOutOfRangeException("Assessment", "Assessment grade must be in the range A+ to E-");;
                 }
             }
         }
@@ -124,6 +120,7 @@ namespace GradesPrototype.Data
         }
     }
 
+    // TODO: Exercise 3: Task 2a: Specify that the Student class implements the IComparable<Student> interface
     public class Student
     {
         public int StudentID { get; set; }
@@ -167,6 +164,9 @@ namespace GradesPrototype.Data
             LastName = String.Empty;
             TeacherID = 0;
         }
+
+        // TODO: Exercise 3: Task 2b: Compare Student objects based on their LastName and FirstName properties
+
     }
 
     public class Teacher
