@@ -11,9 +11,26 @@ namespace GradesPrototype.Data
     public enum Role { Teacher, Student };
 
     // TODO: Exercise 1: Task 1a: Create the User abstract class with the common functionality for Teachers and Students
-    // TODO: Exercise 1: Task 1b: Add the UserName property to the User class
-    // TODO: Exercise 1: Task 1c: Add the Password property to the User class
-    // TODO: Exercise 1: Task 1d: Add the VerifyPassword method to the User class
+    public abstract class User
+    {
+        // TODO: Exercise 1: Task 1b: Add the UserName property to the User class
+        public string UserName { get; set; }
+        // TODO: Exercise 1: Task 1c: Add the Password property to the User class
+        private string _password = Guid.NewGuid().ToString(); // Generate a random password by default
+
+        public string Password
+        {
+            set
+            {
+                _password = value;
+            }
+        }
+        // TODO: Exercise 1: Task 1d: Add the VerifyPassword method to the User class
+        public bool VerifyPassword(string pass)
+        {
+            return (String.Compare(pass, _password) == 0);
+        }
+    }
 
     public class Grade
     {
