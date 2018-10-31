@@ -22,7 +22,10 @@ namespace GradesPrototype.Data
             set
             {
                 // TODO: Exercise 2: Task 1b: Use the SetPassword method to set the password
-                _password = value;
+                if (!SetPassword(value))
+                {
+                    throw new ArgumentException("Password not complex enough", "Password");
+                }
             }
         }
 
@@ -32,6 +35,7 @@ namespace GradesPrototype.Data
         }
 
         // TODO: Exercise 2: Task 1a: Define an abstract method for setting the password
+        public abstract bool SetPassword(string pwd);
         // Teachers and Students will have different password complexity policies
     }
 
