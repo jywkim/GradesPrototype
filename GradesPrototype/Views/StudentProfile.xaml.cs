@@ -53,7 +53,34 @@ namespace GradesPrototype.Views
         // TODO: Exercise 4: Task 4a: Enable a teacher to remove a student from a class
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
+            // If the user is not a teacher, do nothing (the button should not appear anyway)
+            if (SessionContext.UserRole != Role.Teacher)
+            {
+                return;
+            }
 
+            try
+            {
+                // If the user is a teacher, ask the user to confirm that this student should be removed from their class
+                string message = String.Format("Remove {0} {1}", SessionContext.CurrentStudent.FirstName, SessionContext.CurrentStudent.LastName);
+                MessageBoxResult reply = MessageBox.Show(message, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                // If the user confirms, then call the RemoveFromClass method of the current teacher to remove this student from their class
+                if (reply == MessageBoxResult.Yes)
+                {
+                    SessionContext.CurrentTeacher.RemoveFromClass(SessionContext.CurrentStudent);
+
+                    // Go back to the previous page – the student is no longer a member of the class for the current teacher
+                    if (Back != null)
+                    {
+                        Back(sender, e);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error removing student from class", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         // TODO: Exercise 4: Task 5a: Enable a teacher to add a grade to a student
