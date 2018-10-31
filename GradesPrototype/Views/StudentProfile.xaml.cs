@@ -147,6 +147,7 @@ namespace GradesPrototype.Views
                                           where g.StudentID == SessionContext.CurrentStudent.StudentID
                                           select g).ToList();
                     // TODO: Exercise 1: Task 2: Serialize the grades to a JSON.
+                    var gradesAsJson = JsonConvert.SerializeObject(grades, Newtonsoft.Json.Formatting.Indented);
 
                     // TODO: Exercise 1: Task 3a: Modify the message box and ask the user whether they wish to save the report
 
