@@ -150,12 +150,25 @@ namespace GradesPrototype.Views
                     var gradesAsJson = JsonConvert.SerializeObject(grades, Newtonsoft.Json.Formatting.Indented);
 
                     // TODO: Exercise 1: Task 3a: Modify the message box and ask the user whether they wish to save the report
+                    MessageBoxResult reply = MessageBox.Show(gradesAsJson, "Save Report?", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                     // TODO: Exercise 1: Task 3b: Check if the user what to save the report or not
+                    if (reply == MessageBoxResult.Yes)
+                    {
 
-                    // TODO: Exercise 1: Task 3c: Save the data to the file by using FileStream
+                        // TODO: Exercise 1: Task 3c: Save the data to the file by using FileStream
+                        FileStream file = new FileStream(dialog.FileName, FileMode.Create, FileAccess.Write);
+                        StreamWriter streamWriter = new StreamWriter(file);
+                        streamWriter.Write(gradesAsJson);
+                        file.Position = 0;
 
-                    // TODO: Exercise 1: Task 3d: Release all the stream resources
+                        // TODO: Exercise 1: Task 3d: Release all the stream resources
+                        streamWriter.Close();
+                        streamWriter.Dispose();
+
+                        file.Close();
+                        file.Dispose();
+                    }
                 }
             }
             catch (Exception ex)
