@@ -216,13 +216,18 @@ namespace GradesPrototype.Views
             bool? result = dialog.ShowDialog();
 
             //TODO: 02: Task 2a: Check the user file selection
+            if (result.HasValue && result.Value)
+            {
 
-            //TODO: 02: Task 2b: Read the report data from Disk
+                //TODO: 02: Task 2b: Read the report data from Disk
+                string gradesAsJson = File.ReadAllText(dialog.FileName);
 
-            //TODO: 02: Task 2c: Desirialize the JSON data to grades list
+                //TODO: 02: Task 2c: Desirialize the JSON data to grades list
+                var gradeList = JsonConvert.DeserializeObject<List<Grade>>(gradesAsJson);
 
-            //TODO: 02: Task 2d: Display the saved report to the user
-
+                //TODO: 02: Task 2d: Display the saved report to the user
+                studentGrades.ItemsSource = gradeList;
+            }
         }
     }
 }
