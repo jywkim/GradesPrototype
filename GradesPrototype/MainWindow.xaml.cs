@@ -103,7 +103,8 @@ namespace GradesPrototype
         private void studentsPage_StudentSelected(object sender, StudentEventArgs e)
         {
             // TODO: Exercise 3: Task 3c: Set the current student in the global context to the student specified in the StudentEventArgs parameter
-            
+            SessionContext.CurrentStudent = e.Child;
+
             // Display the details of the current student
             GotoStudentProfile();
         }
