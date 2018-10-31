@@ -90,8 +90,6 @@ namespace GradesPrototype.Views
                     Student newStudent = new Student();
                     newStudent.FirstName = sd.firstName.Text;
                     newStudent.LastName = sd.lastName.Text;
-
-                    // TODO: Exercise 2: Task 3a: Use the SetPassword method to set the password.
                     if (!newStudent.SetPassword(sd.password.Text))
                     {
                         throw new Exception("Password must be at least 6 characters long. Student not created");

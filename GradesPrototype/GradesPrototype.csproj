@@ -67,6 +67,7 @@
       <DependentUpon>StudentDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\DataSource.cs" />
+    <Compile Include="Services\ClassFullException.cs" />
     <Compile Include="Services\SessionContext.cs" />
     <Compile Include="Views\LogonPage.xaml.cs">
       <DependentUpon>LogonPage.xaml</DependentUpon>
