@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace GradesPrototype.Data
@@ -10,6 +11,8 @@ namespace GradesPrototype.Data
     public enum Role { Teacher, Student };
 
     // WPF Databinding requires properties
+
+    // TODO: Exercise 1: Task 1a: Convert Grade into a class and define constructors
     public struct Grade
     {
         public int StudentID { get; set; }
@@ -19,6 +22,7 @@ namespace GradesPrototype.Data
         public string Comments { get; set; }
     }
 
+    // TODO: Exercise 1: Task 2a: Convert Student into a class, make the password property write-only, add the VerifyPassword method, and define constructors
     public struct Student
     {
         public int StudentID { get; set; }
@@ -29,6 +33,7 @@ namespace GradesPrototype.Data
         public string LastName { get; set; }
     }
 
+    // TODO: Exercise 1: Task 2b: Convert Teacher into a class, make the password property write-only, add the VerifyPassword method, and define constructors
     public struct Teacher
     {
         public int TeacherID { get; set; }

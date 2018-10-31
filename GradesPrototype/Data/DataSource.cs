@@ -32,7 +32,7 @@ namespace GradesPrototype.Data
                 new Student() { StudentID = 1, UserName = "liuk", Password = "password", TeacherID = 1, FirstName = "Kevin", LastName = "Liu" },
                 new Student() { StudentID = 2, UserName = "weberm", Password = "password", TeacherID = 1, FirstName = "Martin", LastName = "Weber" },
                 new Student() { StudentID = 3, UserName = "ligeorge", Password = "password", TeacherID = 1, FirstName = "George", LastName = "Li" },
-                new Student() { StudentID = 4, UserName = "millerel", Password = "password", TeacherID = 1, FirstName = "Lisa", LastName = "Miller" },
+                new Student() { StudentID = 4, UserName = "millerl", Password = "password", TeacherID = 1, FirstName = "Lisa", LastName = "Miller" },
                 new Student() { StudentID = 5, UserName = "liur", Password = "password", TeacherID = 1, FirstName = "Run", LastName = "Liu" },
                 new Student() { StudentID = 6, UserName = "stewarts", Password = "password", TeacherID = 2, FirstName = "Sean", LastName = "Stewart" },
                 new Student() { StudentID = 7, UserName = "turnero", Password = "password", TeacherID = 2, FirstName = "Olinda", LastName = "Turner" },

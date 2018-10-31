@@ -29,8 +29,6 @@ namespace GradesPrototype.Views
         }
 
         #region Display Logic
-
-        // TODO: Exercise 3: Task 3a: Display students for the current teacher (held in SessionContext.CurrentTeacher )
         public void Refresh()
         {
             // Find students for the current teacher
@@ -53,12 +51,10 @@ namespace GradesPrototype.Views
 
         #region Event Members
         public delegate void StudentSelectionHandler(object sender, StudentEventArgs e);
-        public event StudentSelectionHandler StudentSelected;        
+        public event StudentSelectionHandler StudentSelected;
         #endregion
 
         #region Event Handlers
-
-        // TODO: Exercise 3: Task 3b: If the user clicks on a student, display the details for that student
         private void Student_Click(object sender, RoutedEventArgs e)
         {
             Button itemClicked = sender as Button;
@@ -68,10 +64,10 @@ namespace GradesPrototype.Views
                 int studentID = (int)itemClicked.Tag;
                 if (StudentSelected != null)
                 {
-                    // Find the details of the student by examining the DataContext of the  Button
+                    // Find the details of the student by examining the DataContext of the Button
                     Student student = (Student)itemClicked.DataContext;
 
-                    // Raise the StudentSelected event (handled by MainWindow to display the    details for this student
+                    // Raise the StudentSelected event (handled by MainWindow) to display the details for this student
                     StudentSelected(sender, new StudentEventArgs(student));
                 }
             }
