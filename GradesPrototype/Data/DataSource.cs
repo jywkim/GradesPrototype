@@ -12,13 +12,8 @@ namespace GradesPrototype.Data
     public static class DataSource
     {
         // Collections holding the data used by the prototype application
-
-        // TODO: Exercise 4: Task 1a: Change the Teachers collection into a generic List
         public static List<Teacher> Teachers;
-
         public static List<Student> Students;
-
-        // TODO: Exercise 4: Task 1b: Change the Grades collection into a generic List
         public static List<Grade> Grades;
 
         public static List<string> Subjects;
@@ -29,7 +24,6 @@ namespace GradesPrototype.Data
         {
             Subjects = new List<string>() { "Math", "English", "History", "Geography", "Science" };
 
-            // TODO: Exercise 4: Task 1c: Populate the Teachers collection
             Teachers = new List<Teacher>()
             {
                 new Teacher() { TeacherID = 1, UserName = "vallee", Password = "password", FirstName = "Esther", LastName = "Valle", Class = "3C" },
@@ -53,10 +47,9 @@ namespace GradesPrototype.Data
                 new Student() { StudentID = 12, UserName = "grubere", Password = "password", TeacherID = 3, FirstName = "Eric", LastName = "Gruber" },
                 new Student() { StudentID = 13, UserName = "meyerc", Password = "password", TeacherID = 3, FirstName = "Chris", LastName = "Meyer" },
                 new Student() { StudentID = 14, UserName = "liyuhong", Password = "password", TeacherID = 3, FirstName = "Yuhong", LastName = "Li" },
-                new Student() { StudentID = 15, UserName = "liyan", Password = "password", TeacherID = 3, FirstName = "Yan", LastName = "Li" }
+                new Student() { StudentID = 15, UserName = "liyan", Password = "password", TeacherID = 3, FirstName = "Yan", LastName = "Li" }        
             };
 
-            // TODO: Exercise 4: Task 1d: Populate the Grades collection
             Grades = new List<Grade>()
             {
                 new Grade() { StudentID = 1, AssessmentDate = DateTime.Now.ToString("d"), SubjectName = "Math", Assessment = "A-", Comments = "Good" },

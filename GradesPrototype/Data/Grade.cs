@@ -10,7 +10,11 @@ namespace GradesPrototype.Data
     // Types of user
     public enum Role { Teacher, Student };
 
-    // WPF Databinding requires properties
+    // TODO: Exercise 1: Task 1a: Create the User abstract class with the common functionality for Teachers and Students
+    // TODO: Exercise 1: Task 1b: Add the UserName property to the User class
+    // TODO: Exercise 1: Task 1c: Add the Password property to the User class
+    // TODO: Exercise 1: Task 1d: Add the VerifyPassword method to the User class
+
     public class Grade
     {
         public int StudentID { get; set; }
@@ -120,24 +124,30 @@ namespace GradesPrototype.Data
         }
     }
 
+    // TODO: Exercise 1: Task 2a: Inherit from the User class
     public class Student: IComparable<Student>
     {
         public int StudentID { get; set; }
+
+        // TODO: Exercise 1: Task 2b: Remove the UserName property (now inherited from User)
         public string UserName { get; set; }
 
+        // TODO: Exercise 1: Task 2c: Remove the Password property (now inherited from User)
         private string _password = Guid.NewGuid().ToString(); // Generate a random password by default
-        public string Password { 
-            set 
-            { 
-                _password = value; 
-            } 
+        public string Password
+        {
+            set
+            {
+                _password = value;
+            }
         }
 
+        // TODO: Exercise 1: Task 2d: Remove the VerifyPassword method (now inherited from User)
         public bool VerifyPassword(string pass)
         {
             return (String.Compare(pass, _password) == 0);
         }
-        
+
         public int TeacherID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -177,29 +187,32 @@ namespace GradesPrototype.Data
             return(String.Compare(thisStudentsFullName, otherStudentsFullName));
         }
 
-        // TODO: Exercise 4: Task 2c: Add a grade to a student (the grade is already populated)
         // Add a grade to a student (the grade is already populated)
         public void AddGrade(Grade grade)
         {
-            // Verify that the grade does not belong to another student – the StudentID  should be zero
+            // Verify that the grade does not belong to another student - the StudentID should be zero
             if (grade.StudentID == 0)
             {
-                // Add the grade to the student’s record
+                // Add the grade to the student's record
                 grade.StudentID = StudentID;
             }
             else
             {
                 // If the grade belongs to a different student, throw an ArgumentException
-                throw new ArgumentException("Grade", "Grade belongs to a different  student");
-            }
+                throw new ArgumentException("Grade", "Grade belongs to a different student");
+            }   
         }
     }
 
+    // TODO: Exercise 1: Task 2e: Inherit from the User class
     public class Teacher
     {
         public int TeacherID { get; set; }
+
+        // TODO: Exercise 1: Task 2f: Remove the UserName property (now inherited from User)
         public string UserName { get; set; }
 
+        // TODO: Exercise 1: Task 2g: Remove the Password property (now inherited from User)
         private string _password = Guid.NewGuid().ToString(); // Generate a random password by default
         public string Password
         {
@@ -209,6 +222,7 @@ namespace GradesPrototype.Data
             }
         }
 
+        // TODO: Exercise 1: Task 2h: Remove the VerifyPassword method (now inherited from User)
         public bool VerifyPassword(string pass)
         {
             return (String.Compare(pass, _password) == 0);
@@ -240,7 +254,7 @@ namespace GradesPrototype.Data
             Class = String.Empty;
         }
 
-        // TODO: Exercise 4: Task 2a: Enroll a student in the class for this teacher
+        // Enroll a student in the class for this teacher
         public void EnrollInClass(Student student)
         {
             // Verify that the student is not already enrolled in another class
@@ -251,11 +265,11 @@ namespace GradesPrototype.Data
             }
             else
             {
-                // If the student is already assigned to a class, throw an  ArgumentException
-                throw new ArgumentException("Student", "Student is already assigned to a    class");
-            }
+                // If the student is already assigned to a class, throw an ArgumentException
+                throw new ArgumentException("Student", "Student is already assigned to a class");
+            }            
         }
-        // TODO: Exercise 4: Task 2b: Remove a student from the class for this teacher
+
         // Remove a student from the class for this teacher
         public void RemoveFromClass(Student student)
         {
@@ -268,8 +282,8 @@ namespace GradesPrototype.Data
             else
             {
                 // If the student is not assigned to the class for this teacher, throw an ArgumentException
-                throw new ArgumentException("Student", "Student is not assigned to this  class");
-            }
+                throw new ArgumentException("Student", "Student is not assigned to this class");
+            } 
         }
     }
 }

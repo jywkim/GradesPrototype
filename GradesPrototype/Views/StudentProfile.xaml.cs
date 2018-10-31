@@ -50,7 +50,6 @@ namespace GradesPrototype.Views
             }
         }
 
-        // TODO: Exercise 4: Task 4a: Enable a teacher to remove a student from a class
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
             // If the user is not a teacher, do nothing (the button should not appear anyway)
@@ -65,12 +64,12 @@ namespace GradesPrototype.Views
                 string message = String.Format("Remove {0} {1}", SessionContext.CurrentStudent.FirstName, SessionContext.CurrentStudent.LastName);
                 MessageBoxResult reply = MessageBox.Show(message, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                // If the user confirms, then call the RemoveFromClass method of the current teacher to remove this student from their class
+                // If the user confirms, then call the RemoveFromClass method of the current teacher to remove this student from their class 
                 if (reply == MessageBoxResult.Yes)
                 {
                     SessionContext.CurrentTeacher.RemoveFromClass(SessionContext.CurrentStudent);
 
-                    // Go back to the previous page – the student is no longer a member of the class for the current teacher
+                    // Go back to the previous page - the student is no longer a member of the class for the current teacher
                     if (Back != null)
                     {
                         Back(sender, e);
@@ -83,7 +82,6 @@ namespace GradesPrototype.Views
             }
         }
 
-        // TODO: Exercise 4: Task 5a: Enable a teacher to add a grade to a student
         private void AddGrade_Click(object sender, RoutedEventArgs e)
         {
             // If the user is not a teacher, do nothing (the button should not appear anyway)
@@ -100,7 +98,7 @@ namespace GradesPrototype.Views
                 // Display the form and get the details of the new grade
                 if (gd.ShowDialog().Value)
                 {
-                    // When the user closes the form, retrieve the details of the assessment    grade from the form
+                    // When the user closes the form, retrieve the details of the assessment grade from the form
                     // and use them to create a new Grade object
                     Grade newGrade = new Grade();
                     newGrade.AssessmentDate = gd.assessmentDate.SelectedDate.Value.ToString("d");

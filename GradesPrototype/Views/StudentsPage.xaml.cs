@@ -109,10 +109,10 @@ namespace GradesPrototype.Views
             }
         }
 
-        // TODO: Exercise 4: Task 3c: Enroll a student in the teacher's class
+        // Enroll a student in the teacher's class
         private void EnrollStudent_Click(object sender, RoutedEventArgs e)
         {
-            // Use the AssignStudentDialog to display unassigned students and add them to the teacher’s class
+            // Use the AssignStudentDialog to display unassigned students and add them to the teacher's class
             // All of the work is performed in the code behind the dialog
             AssignStudentDialog asd = new AssignStudentDialog();
             asd.ShowDialog();
