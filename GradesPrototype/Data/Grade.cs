@@ -12,18 +12,23 @@ namespace GradesPrototype.Data
 
     // WPF Databinding requires properties
 
-    // TODO: Exercise 1: Task 1a: Convert Grade into a class and define constructors
     public class Grade
     {
         public int StudentID { get; set; }
-        public string AssessmentDate { get; set; }
-        public string SubjectName { get; set; }
-        public string Assessment { get; set; }
-        public string Comments { get; set; }
 
+        // TODO: Exercise 2: Task 2a: Add validation to the AssessmentDate property
+        public string AssessmentDate { get; set; }
+        
+        // TODO: Exercise 2: Task 2b: Add validation to the SubjectName property
+        public string SubjectName { get; set; }
+
+        // TODO: Exercise 2: Task 2c: Add validation to the Assessment property
+        public string Assessment { get; set; }
+
+        public string Comments { get; set; }
+                
         // Constructor to initialize the properties of a new Grade
-        public Grade(int studentID, string assessmentDate, string subject, string
-        assessment, string comments)
+        public Grade(int studentID, string assessmentDate, string subject, string assessment, string comments)
         {
             StudentID = studentID;
             AssessmentDate = assessmentDate;
@@ -43,26 +48,24 @@ namespace GradesPrototype.Data
         }
     }
 
-    // TODO: Exercise 1: Task 2a: Convert Student into a class, make the password property write-only, add the VerifyPassword method, and define constructors
     public class Student
     {
         public int StudentID { get; set; }
         public string UserName { get; set; }
 
         private string _password = Guid.NewGuid().ToString(); // Generate a random password by default
-        public string Password
-        {
-            set
-            {
-                _password = value;
-            }
+        public string Password { 
+            set 
+            { 
+                _password = value; 
+            } 
         }
 
         public bool VerifyPassword(string pass)
         {
             return (String.Compare(pass, _password) == 0);
         }
-
+        
         public int TeacherID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -78,7 +81,7 @@ namespace GradesPrototype.Data
             TeacherID = teacherID;
         }
 
-        // Default constructor
+        // Default constructor 
         public Student()
         {
             StudentID = 0;
@@ -90,7 +93,6 @@ namespace GradesPrototype.Data
         }
     }
 
-    // TODO: Exercise 1: Task 2b: Convert Teacher into a class, make the password property write-only, add the VerifyPassword method, and define constructors
     public class Teacher
     {
         public int TeacherID { get; set; }
