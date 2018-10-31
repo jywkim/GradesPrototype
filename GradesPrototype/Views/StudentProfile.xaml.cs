@@ -86,7 +86,42 @@ namespace GradesPrototype.Views
         // TODO: Exercise 4: Task 5a: Enable a teacher to add a grade to a student
         private void AddGrade_Click(object sender, RoutedEventArgs e)
         {
+            // If the user is not a teacher, do nothing (the button should not appear anyway)
+            if (SessionContext.UserRole != Role.Teacher)
+            {
+                return;
+            }
 
+            try
+            {
+                // Use the GradeDialog to get the details of the assessment grade
+                GradeDialog gd = new GradeDialog();
+
+                // Display the form and get the details of the new grade
+                if (gd.ShowDialog().Value)
+                {
+                    // When the user closes the form, retrieve the details of the assessment    grade from the form
+                    // and use them to create a new Grade object
+                    Grade newGrade = new Grade();
+                    newGrade.AssessmentDate = gd.assessmentDate.SelectedDate.Value.ToString("d");
+                    newGrade.SubjectName = gd.subject.SelectedValue.ToString();
+                    newGrade.Assessment = gd.assessmentGrade.Text;
+                    newGrade.Comments = gd.comments.Text;
+
+                    // Save the grade to the list of grades
+                    DataSource.Grades.Add(newGrade);
+
+                    // Add the grade to the current student
+                    SessionContext.CurrentStudent.AddGrade(newGrade);
+
+                    // Refresh the display so that the new grade appears
+                    Refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error adding assessment grade", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         #endregion
 
