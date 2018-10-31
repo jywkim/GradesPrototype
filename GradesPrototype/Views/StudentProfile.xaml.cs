@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GradesPrototype.Controls;
 using GradesPrototype.Data;
 using GradesPrototype.Services;
 
@@ -35,7 +36,7 @@ namespace GradesPrototype.Views
         #region Events
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            // If the user is not a teacher, do nothing
+            // If the user is not a teacher, do nothing (the button should not appear anyway)
             if (SessionContext.UserRole != Role.Teacher)
             {
                 return;
@@ -48,6 +49,18 @@ namespace GradesPrototype.Views
                 Back(sender, e);
             }
         }
+
+        // TODO: Exercise 4: Task 4a: Enable a teacher to remove a student from a class
+        private void Remove_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // TODO: Exercise 4: Task 5a: Enable a teacher to add a grade to a student
+        private void AddGrade_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         #endregion
 
         // Display the details for the current student (held in SessionContext.CurrentStudent), including the grades for the student
@@ -56,19 +69,23 @@ namespace GradesPrototype.Views
             // Bind the studentName StackPanel to display the details of the student in the TextBlocks in this panel
             studentName.DataContext = SessionContext.CurrentStudent;
 
-            // If the current user is a student, hide the Back button 
-            // (only applicable to teachers who can use the Back button to return to the list of students)
+            // If the current user is a student, hide the Back, Remove, and Add Grade buttons
+            // (these features are only applicable to teachers)
             if (SessionContext.UserRole == Role.Student)
             {
                 btnBack.Visibility = Visibility.Hidden;
+                btnRemove.Visibility = Visibility.Hidden;
+                btnAddGrade.Visibility = Visibility.Hidden;
             }
             else
             {
                 btnBack.Visibility = Visibility.Visible;
+                btnRemove.Visibility = Visibility.Visible;
+                btnAddGrade.Visibility = Visibility.Visible;
             }
 
             // Find all the grades for the student
-            ArrayList grades = new ArrayList();
+            List<Grade> grades = new List<Grade>();
             foreach (Grade grade in DataSource.Grades)
             {
                 if (grade.StudentID == SessionContext.CurrentStudent.StudentID)

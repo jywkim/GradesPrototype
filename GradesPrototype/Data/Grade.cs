@@ -67,7 +67,7 @@ namespace GradesPrototype.Data
                 else
                 {
                     // If the subject is not valid then throw an ArgumentException
-                    throw new ArgumentException("SubjectName", "Subject is not recognized");
+                    throw new ArgumentException("Subject", "Subject is not recognized");
                 }
             }
         }
@@ -120,8 +120,7 @@ namespace GradesPrototype.Data
         }
     }
 
-    // TODO: Exercise 3: Task 2a: Specify that the Student class implements the IComparable<Student> interface
-    public class Student : IComparable<Student>
+    public class Student: IComparable<Student>
     {
         public int StudentID { get; set; }
         public string UserName { get; set; }
@@ -165,7 +164,6 @@ namespace GradesPrototype.Data
             TeacherID = 0;
         }
 
-        // TODO: Exercise 3: Task 2b: Compare Student objects based on their LastName and FirstName properties
         // Compare Student objects based on their LastName and FirstName properties
         public int CompareTo(Student other)
         {
@@ -176,8 +174,10 @@ namespace GradesPrototype.Data
             string otherStudentsFullName = other.LastName + other.FirstName;
 
             // Use String.Compare to compare the concatenated names and return the result
-            return (String.Compare(thisStudentsFullName, otherStudentsFullName));
+            return(String.Compare(thisStudentsFullName, otherStudentsFullName));
         }
+
+        // TODO: Exercise 4: Task 2c: Add a grade to a student (the grade is already populated)
     }
 
     public class Teacher
@@ -224,5 +224,9 @@ namespace GradesPrototype.Data
             LastName = String.Empty;
             Class = String.Empty;
         }
+
+        // TODO: Exercise 4: Task 2a: Enroll a student in the class for this teacher
+
+        // TODO: Exercise 4: Task 2b: Remove a student from the class for this teacher
     }
 }

@@ -12,10 +12,13 @@ namespace GradesPrototype.Data
     public static class DataSource
     {
         // Collections holding the data used by the prototype application
+
+        // TODO: Exercise 4: Task 1a: Change the Teachers collection into a generic List
         public static ArrayList Teachers;
 
-        // TODO: Exercise 3: Task 3a: Change the Students collection into a List<Student>
         public static List<Student> Students;
+
+        // TODO: Exercise 4: Task 1b: Change the Grades collection into a generic List
         public static ArrayList Grades;
 
         public static List<string> Subjects;
@@ -26,6 +29,7 @@ namespace GradesPrototype.Data
         {
             Subjects = new List<string>() { "Math", "English", "History", "Geography", "Science" };
 
+            // TODO: Exercise 4: Task 1c: Populate the Teachers collection
             Teachers = new ArrayList()
             {
                 new Teacher() { TeacherID = 1, UserName = "vallee", Password = "password", FirstName = "Esther", LastName = "Valle", Class = "3C" },
@@ -33,7 +37,6 @@ namespace GradesPrototype.Data
                 new Teacher() { TeacherID = 3, UserName = "newmanb", Password = "password", FirstName = "Belinda", LastName = "Newman", Class = "2A" }
             };
 
-            // TODO: Exercise 3: Task 3b: Populate the List<Student> collection
             Students = new List<Student>()
             {
                 new Student() { StudentID = 1, UserName = "liuk", Password = "password", TeacherID = 1, FirstName = "Kevin", LastName = "Liu" },
@@ -53,6 +56,7 @@ namespace GradesPrototype.Data
                 new Student() { StudentID = 15, UserName = "liyan", Password = "password", TeacherID = 3, FirstName = "Yan", LastName = "Li" }
             };
 
+            // TODO: Exercise 4: Task 1d: Populate the Grades collection
             Grades = new ArrayList()
             {
                 new Grade() { StudentID = 1, AssessmentDate = DateTime.Now.ToString("d"), SubjectName = "Math", Assessment = "A-", Comments = "Good" },

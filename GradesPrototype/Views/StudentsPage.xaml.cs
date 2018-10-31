@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GradesPrototype.Data;
 using GradesPrototype.Services;
+using GradesPrototype.Controls;
 
 namespace GradesPrototype.Views
 {
@@ -32,7 +33,7 @@ namespace GradesPrototype.Views
         public void Refresh()
         {
             // Find students for the current teacher
-            ArrayList students = new ArrayList();
+            List<Student> students = new List<Student>();
             foreach (Student student in DataSource.Students)
             {
                 if (student.TeacherID == SessionContext.CurrentTeacher.TeacherID)
@@ -71,6 +72,47 @@ namespace GradesPrototype.Views
                     StudentSelected(sender, new StudentEventArgs(student));
                 }
             }
+        }
+
+        // Create a new student with input from the user
+        private void NewStudent_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Use the StudentDialog to get the details of the student from the user
+                StudentDialog sd = new StudentDialog();
+
+                // Display the form and get the details of the new student
+                if (sd.ShowDialog().Value)
+                {
+                    // When the user closes the form, retrieve the details of the student from the form
+                    // and use them to create a new Student object
+                    Student newStudent = new Student();
+                    newStudent.FirstName = sd.firstName.Text;
+                    newStudent.LastName = sd.lastName.Text;
+                    newStudent.Password = sd.password.Text;
+
+                    // Generate the UserName property - lastname with the initial letter of the first name all converted to lowercase
+                    newStudent.UserName = (newStudent.LastName + newStudent.FirstName.Substring(0, 1)).ToLower();
+
+                    // Generate a unique ID for the user: Use the maximum StudentID in the Students collection and add 1
+                    newStudent.StudentID = (from s in DataSource.Students
+                                            select s.StudentID).Max() + 1;
+
+                    // Add the student to the Students collection
+                    DataSource.Students.Add(newStudent);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error creating new student", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // TODO: Exercise 4: Task 3c: Enroll a student in the teacher's class
+        private void EnrollStudent_Click(object sender, RoutedEventArgs e)
+        {
+ 
         }
         #endregion
     }
