@@ -26,9 +26,9 @@ namespace GradesPrototype.Data
 
             Teachers = new List<Teacher>()
             {
-                new Teacher() { TeacherID = 1, UserName = "vallee", Password = "password", FirstName = "Esther", LastName = "Valle", Class = "3C" },
-                new Teacher() { TeacherID = 2, UserName = "waited", Password = "password", FirstName = "David", LastName = "Waite", Class = "4B" },
-                new Teacher() { TeacherID = 3, UserName = "newmanb", Password = "password", FirstName = "Belinda", LastName = "Newman", Class = "2A" }
+                new Teacher() { TeacherID = 1, UserName = "vallee", Password = "password99", FirstName = "Esther", LastName = "Valle", Class = "3C" },
+                new Teacher() { TeacherID = 2, UserName = "waited", Password = "password99", FirstName = "David", LastName = "Waite", Class = "4B" },
+                new Teacher() { TeacherID = 3, UserName = "newmanb", Password = "password99", FirstName = "Belinda", LastName = "Newman", Class = "2A" }
             };
 
             Students = new List<Student>()

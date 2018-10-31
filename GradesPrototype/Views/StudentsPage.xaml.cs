@@ -90,6 +90,8 @@ namespace GradesPrototype.Views
                     Student newStudent = new Student();
                     newStudent.FirstName = sd.firstName.Text;
                     newStudent.LastName = sd.lastName.Text;
+
+                    // TODO: Exercise 2: Task 3a: Use the SetPassword method to set the password.
                     newStudent.Password = sd.password.Text;
 
                     // Generate the UserName property - lastname with the initial letter of the first name all converted to lowercase

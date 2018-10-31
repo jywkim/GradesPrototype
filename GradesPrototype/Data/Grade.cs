@@ -10,26 +10,29 @@ namespace GradesPrototype.Data
     // Types of user
     public enum Role { Teacher, Student };
 
-    // TODO: Exercise 1: Task 1a: Create the User abstract class with the common functionality for Teachers and Students
+    // Abstract class encapsulating the common functionality for Teachers and Students
     public abstract class User
     {
-        // TODO: Exercise 1: Task 1b: Add the UserName property to the User class
         public string UserName { get; set; }
-        // TODO: Exercise 1: Task 1c: Add the Password property to the User class
-        private string _password = Guid.NewGuid().ToString(); // Generate a random password by default
 
+        // TODO: Exercise 2: Task 2a: Make _password a protected field rather than private
+        private string _password = Guid.NewGuid().ToString(); // Generate a random password by default
         public string Password
         {
             set
             {
+                // TODO: Exercise 2: Task 1b: Use the SetPassword method to set the password
                 _password = value;
             }
         }
-        // TODO: Exercise 1: Task 1d: Add the VerifyPassword method to the User class
+
         public bool VerifyPassword(string pass)
         {
             return (String.Compare(pass, _password) == 0);
         }
+
+        // TODO: Exercise 2: Task 1a: Define an abstract method for setting the password
+        // Teachers and Students will have different password complexity policies
     }
 
     public class Grade
@@ -141,20 +144,9 @@ namespace GradesPrototype.Data
         }
     }
 
-    // TODO: Exercise 1: Task 2a: Inherit from the User class
-    public class Student : User, IComparable<Student>
+    public class Student: User, IComparable<Student>
     {
         public int StudentID { get; set; }
-
-        // TODO: Exercise 1: Task 2b: Remove the UserName property (now inherited from User)
-        
-
-        // TODO: Exercise 1: Task 2c: Remove the Password property (now inherited from User)
-        
-
-        // TODO: Exercise 1: Task 2d: Remove the VerifyPassword method (now inherited from User)
-        
-
         public int TeacherID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -175,7 +167,6 @@ namespace GradesPrototype.Data
         {
             StudentID = 0;
             UserName = String.Empty;
-            Password = String.Empty;
             FirstName = String.Empty;
             LastName = String.Empty;
             TeacherID = 0;
@@ -209,22 +200,14 @@ namespace GradesPrototype.Data
                 throw new ArgumentException("Grade", "Grade belongs to a different student");
             }   
         }
+
+        // TODO: Exercise 2: Task 2b: Implement SetPassword to set the password for the student
+        // The password policy is very simple - the password must be at least 6 characters long, but there are no other restrictions
     }
 
-    // TODO: Exercise 1: Task 2e: Inherit from the User class
     public class Teacher : User
     {
         public int TeacherID { get; set; }
-
-        // TODO: Exercise 1: Task 2f: Remove the UserName property (now inherited from User)
-        
-
-        // TODO: Exercise 1: Task 2g: Remove the Password property (now inherited from User)
-        
-
-        // TODO: Exercise 1: Task 2h: Remove the VerifyPassword method (now inherited from User)
-       
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Class { get; set; }
@@ -245,7 +228,6 @@ namespace GradesPrototype.Data
         {
             TeacherID = 0;
             UserName = String.Empty;
-            Password = String.Empty;
             FirstName = String.Empty;
             LastName = String.Empty;
             Class = String.Empty;
@@ -282,5 +264,8 @@ namespace GradesPrototype.Data
                 throw new ArgumentException("Student", "Student is not assigned to this class");
             } 
         }
+
+        // TODO: Exercise 2: Task 2c: Implement SetPassword to set the password for the teacher
+        // The password must be at least 8 characters long, and it must contain at least 2 numeric characters
     }
 }
