@@ -222,7 +222,7 @@ namespace GradesPrototype.Data
 
     public class Teacher : User
     {
-        // TODO: Exercise 3: Task 2a: Set the maximum class size for any teacher
+        // The maximum class size for any teacher
         private const int MAX_CLASS_SIZE = 8;
 
         public int TeacherID { get; set; }
@@ -262,11 +262,10 @@ namespace GradesPrototype.Data
                                where s.TeacherID == TeacherID
                                select s).Count();
 
-            // TODO: Exercise 3: Task 2b: If the class is already full, then another student cannot be enrolled
-            // So throw a ClassFullException and specify the class that is full
+            // If the class is already full, then another student cannot be enrolled
             if (numStudents == MAX_CLASS_SIZE)
             {
-                // Throw a ClassFullException and specify the class that is full
+                // So throw a ClassFullException and specify the class that is full
                 throw new ClassFullException("Class full: Unable to enroll student", Class);
             }
 
