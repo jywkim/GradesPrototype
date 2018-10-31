@@ -209,15 +209,20 @@ namespace GradesPrototype.Views
         private void LoadReport_Click(object sender, RoutedEventArgs e)
         {
             //TODO: 02: Task 1: Define the File Dialog settings to load the report file
-            
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "JSON documents|*.json";
+
+            // Display the dialog and get a filename from the user
+            bool? result = dialog.ShowDialog();
+
             //TODO: 02: Task 2a: Check the user file selection
 
             //TODO: 02: Task 2b: Read the report data from Disk
-            
+
             //TODO: 02: Task 2c: Desirialize the JSON data to grades list
-            
+
             //TODO: 02: Task 2d: Display the saved report to the user
-            
+
         }
     }
 }
