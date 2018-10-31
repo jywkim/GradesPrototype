@@ -9,7 +9,7 @@ namespace GradesPrototype.Data
     // Types of user
     public enum Role { Teacher, Student };
 
-    // TODO: Exercise 2: Task 1a: Create the Grade struct
+    // WPF Databinding requires properties
     public struct Grade
     {
         public int StudentID { get; set; }
@@ -19,7 +19,6 @@ namespace GradesPrototype.Data
         public string Comments { get; set; }
     }
 
-    // TODO: Exercise 2: Task 1b: Create the Student struct
     public struct Student
     {
         public int StudentID { get; set; }
@@ -30,7 +29,6 @@ namespace GradesPrototype.Data
         public string LastName { get; set; }
     }
 
-    // TODO: Exercise 2: Task 1c: Create the Teacher struct
     public struct Teacher
     {
         public int TeacherID { get; set; }

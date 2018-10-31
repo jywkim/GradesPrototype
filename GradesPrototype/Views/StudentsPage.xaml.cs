@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GradesPrototype.Data;
+using GradesPrototype.Services;
 
 namespace GradesPrototype.Views
 {
@@ -29,37 +30,24 @@ namespace GradesPrototype.Views
 
         #region Display Logic
 
-        // Display students for the current teacher
-        // Student details are hard coded in the XAML definition of the view
+        // TODO: Exercise 3: Task 3a: Display students for the current teacher (held in SessionContext.CurrentTeacher )
         public void Refresh()
         {
-            // Display the class name - hard-coded
-            txtClass.Text = "3A";
+
         }
         #endregion
 
         #region Event Members
         public delegate void StudentSelectionHandler(object sender, StudentEventArgs e);
-        public event StudentSelectionHandler StudentSelected;
+        public event StudentSelectionHandler StudentSelected;        
         #endregion
 
         #region Event Handlers
-        // TODO: Exercise 1: Task 5a: Handle the click event for a student
-        // Raise the StudentSelected event and indicate which student was selected
-        // The MainWindow window subscribes to this event and displays the view for a single student
+
+        // TODO: Exercise 3: Task 3b: If the user clicks on a student, display the details for that student
         private void Student_Click(object sender, RoutedEventArgs e)
         {
-            Button itemClicked = sender as Button;
-            if (itemClicked != null)
-            {
-                // Find out which student was clicked - the Tag property of the button  contains the name
-                string studentName = (string)itemClicked.Tag;
-                if (StudentSelected != null)
-                {
-                    // Raise the StudentSelected event (handled by MainWindow) to display the   details for this student
-                    StudentSelected(sender, new StudentEventArgs(studentName));
-                }
-            }
+
         }
         #endregion
     }
@@ -67,9 +55,9 @@ namespace GradesPrototype.Views
     // EventArgs class for passing Student information to an event
     public class StudentEventArgs : EventArgs
     {
-        public string Child { get; set; }
+        public Student Child { get; set; }
 
-        public StudentEventArgs(string s)
+        public StudentEventArgs(Student s)
         {
             Child = s;
         }

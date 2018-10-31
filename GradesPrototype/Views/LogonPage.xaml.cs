@@ -28,18 +28,16 @@ namespace GradesPrototype.Views
         }
 
         #region Event Members
-        // TODO: Exercise 1: Task 2a: Define the LogonSuccess event handler
         public event EventHandler LogonSuccess;
 
         // TODO: Exercise 3: Task 1a: Define LogonFailed event
         public event EventHandler LogonFailed;
+
         #endregion
 
         #region Logon Validation
 
         // TODO: Exercise 3: Task 1b: Validate the username and password against the Users collection in the MainWindow window
-        // TODO: Exercise 1: Task 2b: Implement the Logon_Click event handler for the Logon button
-        // Simulate logging on (no validation or authentication performed yet)
         private void Logon_Click(object sender, RoutedEventArgs e)
         {
             // Find the user in the list of possible users - first check whether the user is a  teacher
