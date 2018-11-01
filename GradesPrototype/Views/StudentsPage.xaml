@@ -4,6 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              >
+
+    <!-- TODO: Exercise 3: Task 2a. Add an instance of the ImageNameConverter class as a resource to the view -->
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -24,6 +27,8 @@
                         <Grid Margin="8">
                             <Button Height="150" Width="127.5" Click="Student_Click" Tag="{Binding User.UserId}">
                                 <StackPanel>
+                                    <!-- TODO: Exercise 3: Task 2b. Add an Image control to display the photo of the student -->
+                                    <!-- TODO: Exercise 3: Task 2c. Bind the Image control to the ImageName property and use the ImageNameConverter to convert the image name into a URL -->
                                     <TextBlock Text="{Binding FirstName}" FontSize="16" />
                                     <TextBlock Text="{Binding LastName}" FontSize="16"  />
                                 </StackPanel>

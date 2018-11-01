@@ -19,7 +19,6 @@ namespace Grades.Web.Services
         // This method is called only once to initialize service-wide policies.
         public static void InitializeService(DataServiceConfiguration config)
         {
-            // TODO: set rules to indicate which entity sets and service operations are visible, updatable, etc.
             // Configure the StudentsInClass operation as read-only.
             config.SetServiceOperationAccessRule("StudentsInClass", ServiceOperationRights.AllRead);
 

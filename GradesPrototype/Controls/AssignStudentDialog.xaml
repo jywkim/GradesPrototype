@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         ResizeMode="NoResize" Title="Assign Student" Width="400" Height="500" Loaded="AssignStudentDialog_Loaded">
 
+    <!-- TODO: Exercise 3: Task 4a. Add an instance of the ImageNameConverter class as a resource to the view -->
+    
     <Grid x:Name="LayoutRoot" Margin="2">
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -24,6 +26,7 @@
                             <Grid Margin="8">
                                 <Button Height="150" Width="127.5" Click="Student_Click" Tag="{Binding User.UserId}">
                                     <StackPanel>
+                                        <!-- TODO: Exercise 3: Task 4b. Add an Image control to display the photo of the student and bind the Image control to the ImageName property and use the ImageNameConverter to convert the image name into a URL -->
                                         <TextBlock Text="{Binding FirstName}" FontSize="16" />
                                         <TextBlock Text="{Binding LastName}" FontSize="16"  />
                                     </StackPanel>
