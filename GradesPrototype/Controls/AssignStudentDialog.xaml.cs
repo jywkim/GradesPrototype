@@ -93,7 +93,7 @@ namespace GradesPrototype.Controls
                     SessionContext.CurrentTeacher.EnrollInClass(student);
                     
                     // TODO: Exercise 2: Task 3a: Specify that the selected student has been changed
-
+                    SessionContext.DBContext.UpdateObject(student);
                     SessionContext.Save();
 
                     // Refresh the display - the newly assigned student should disappear from the list of unassigned students

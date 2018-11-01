@@ -75,7 +75,7 @@ namespace GradesPrototype.Views
                     SessionContext.CurrentTeacher.RemoveFromClass(SessionContext.CurrentStudent);
 
                     // TODO: Exercise 2: Task 3b: Specify that the current student has been changed
-
+                    SessionContext.DBContext.UpdateObject(SessionContext.CurrentStudent);
                     SessionContext.Save();
 
                     // Go back to the previous page - the student is no longer a member of the class for the current teacher
