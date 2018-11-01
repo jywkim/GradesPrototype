@@ -34,7 +34,7 @@ namespace GradesPrototype.Controls
             SessionContext.DBContext.Students.Load();
 
             // TODO: Exercise 2: Task 2f: Reference the SessionContext.DBContext.Students collection
-            var unassignedStudents = from s in SessionContext.DBContext.Students.Local  
+            var unassignedStudents = from s in SessionContext.DBContext.Students.Expand("User, Grades")
                                      where s.TeacherUserId == null
                                      select s;
             

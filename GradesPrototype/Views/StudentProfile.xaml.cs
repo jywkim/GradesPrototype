@@ -118,10 +118,10 @@ namespace GradesPrototype.Views
                     newGrade.Assessment = gd.assessmentGrade.Text;
                     newGrade.Comments = gd.comments.Text;
                     newGrade.StudentUserId = SessionContext.CurrentStudent.UserId;
-                    
+
                     // Save the grade.
                     // TODO: Exercise 2: Task 2g: Use the AddToGrades method to add a new grade
-                    SessionContext.DBContext.Grades.Add(newGrade);
+                    SessionContext.DBContext.AddToGrades(newGrade);
                     SessionContext.Save();
 
                     // Refresh the display so that the new grade appears
@@ -155,7 +155,7 @@ namespace GradesPrototype.Views
                 {
                     // Get the grades for the currently selected student
                     // TODO: Exercise 2: Task 2h: Load Subject data with Grades
-                    IEnumerable<Grades.DataModel.Grade> grades = (from g in SessionContext.DBContext.Grades
+                    IEnumerable<Grades.DataModel.Grade> grades = (from g in SessionContext.DBContext.Grades.Expand("Subject")
                                                                   where g.StudentUserId == SessionContext.CurrentStudent.UserId
                                                                   select g);
 
