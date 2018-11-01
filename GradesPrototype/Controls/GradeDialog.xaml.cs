@@ -42,10 +42,17 @@ namespace GradesPrototype.Controls
         // If the user clicks OK to save the Grade details, validate the information that the user has provided
         private void ok_Click(object sender, RoutedEventArgs e)
         {
-            // Data validation functionality to be added in Exercise 3
+            // Create a Grade object and use it to trap and report any data validation exceptions that are thrown
             try
             {
-              
+                // TODO: Exercise 3: Task 2a: Create a Grade object.
+
+
+                // TODO: Exercise 3: Task 2b: Call the ValidateAssessmentDate method.
+
+
+                // TODO: Exercise 3: Task 2c: Call the ValidateAssessmentGrade method.
+
             }
             catch (Exception ex)
             {

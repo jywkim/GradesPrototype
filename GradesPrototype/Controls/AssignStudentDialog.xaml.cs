@@ -88,9 +88,11 @@ namespace GradesPrototype.Controls
                     // Get the ID of the currently logged-on teacher
                     Guid teacherID = SessionContext.CurrentTeacher.UserId ;
 
-                    // Enrolling functionality to be added in Exercise 3 
+                    // TODO: Exercise 3: Task 1a: Call the EnrollInClass method to assign the student to this teacher's class.
+
+                    // TODO: Exercise 3: Task 1b: Save the updated student/class information back to the database.
                     
-                    
+
 
                     // Refresh the display - the newly assigned student should disappear from the list of unassigned students
                     Refresh();
