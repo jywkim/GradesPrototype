@@ -36,5 +36,7 @@ namespace Grades.DataModel
                 throw new ArgumentException("Student", "Student is already assigned to a class");
             }
         }
+
+
     }
 }
