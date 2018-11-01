@@ -18,8 +18,9 @@ using System.Xml;
 using System.Xml.Linq;
 using Microsoft.Win32;
 using GradesPrototype.Controls;
-using GradesPrototype.Data;
 using GradesPrototype.Services;
+using Grades.DataModel;
+
 
 namespace GradesPrototype.Views
 {
@@ -72,6 +73,7 @@ namespace GradesPrototype.Views
                 if (reply == MessageBoxResult.Yes)
                 {
                     SessionContext.CurrentTeacher.RemoveFromClass(SessionContext.CurrentStudent);
+                    SessionContext.Save();
 
                     // Go back to the previous page - the student is no longer a member of the class for the current teacher
                     if (Back != null)
@@ -96,29 +98,21 @@ namespace GradesPrototype.Views
 
             try
             {
-                // Use the GradeDialog to get the details of the assessment grade
-                GradeDialog gd = new GradeDialog();
+                // TODO: Exercise 2: Task 3a: Use the GradeDialog to get the details of the new grade.
+                
 
-                // Display the form and get the details of the new grade
-                if (gd.ShowDialog().Value)
-                {
-                    // When the user closes the form, retrieve the details of the assessment grade from the form
-                    // and use them to create a new Grade object
-                    Grade newGrade = new Grade();
-                    newGrade.AssessmentDate = gd.assessmentDate.SelectedDate.Value.ToString("d");
-                    newGrade.SubjectName = gd.subject.SelectedValue.ToString();
-                    newGrade.Assessment = gd.assessmentGrade.Text;
-                    newGrade.Comments = gd.comments.Text;
+                // TODO: Exercise 2: Task 3b: Display the form and get the details of the new grade.
+                
+                    // TODO: Exercise 2: Task 3c: When the user closes the form, retrieve the details of the assessment grade from the form
+                    // and use them to create a new Grade object.
+                   
 
-                    // Save the grade to the list of grades
-                    DataSource.Grades.Add(newGrade);
+                    // TODO: Exercise 2: Task 3d: Save the grade.
+                   
 
-                    // Add the grade to the current student
-                    SessionContext.CurrentStudent.AddGrade(newGrade);
-
-                    // Refresh the display so that the new grade appears
-                    Refresh();
-                }
+                    // TODO: Exercise 2: Task 3e: Refresh the display so that the new grade appears
+                    
+                
             }
             catch (Exception ex)
             {
@@ -146,9 +140,9 @@ namespace GradesPrototype.Views
                 if (result.HasValue && result.Value)
                 {
                     // Get the grades for the currently selected student
-                    List<Grade> grades = (from g in DataSource.Grades
-                                          where g.StudentID == SessionContext.CurrentStudent.StudentID
-                                          select g).ToList();
+                    IEnumerable<Grades.DataModel.Grade> grades = (from g in SessionContext.DBContext.Grades
+                                                                  where g.StudentUserId == SessionContext.CurrentStudent.UserId
+                                                                  select g);
 
                     // Serialize the grades to a MemoryStream. 
                     MemoryStream ms = FormatAsXMLStream(grades);
@@ -163,7 +157,7 @@ namespace GradesPrototype.Views
                         FileStream file = new FileStream(dialog.FileName, FileMode.Create, FileAccess.Write);
                         ms.CopyTo(file);
                         file.Close();
-                    }                    
+                    }
                 }
             }
             catch (Exception ex)
@@ -176,7 +170,7 @@ namespace GradesPrototype.Views
         #region Utility and Helper Methods
 
         // Format the list of grades as an XML document and write it to a MemoryStream
-        private MemoryStream FormatAsXMLStream(List<Grade> grades)
+        private MemoryStream FormatAsXMLStream(IEnumerable<Grades.DataModel.Grade> grades)
         {
             // Save the XML document to a MemoryStream by using an XmlWriter
             MemoryStream ms = new MemoryStream();
@@ -189,11 +183,11 @@ namespace GradesPrototype.Views
 
             // Format the grades for the student and add them as child elements of the root node
             // Grade elements have the format <Grade Date="01/01/2012" Subject="Math" Assessment="A-" Comments="Good" />
-            foreach (Grade grade in grades)
+            foreach (Grades.DataModel.Grade grade in grades)
             {
                 writer.WriteStartElement("Grade");
-                writer.WriteAttributeString("Date", grade.AssessmentDate);
-                writer.WriteAttributeString("Subject", grade.SubjectName);
+                writer.WriteAttributeString("Date", grade.AssessmentDate.ToString());
+                writer.WriteAttributeString("Subject", grade.Subject.Name);
                 writer.WriteAttributeString("Assessment", grade.Assessment);
                 writer.WriteAttributeString("Comments", grade.Comments);
                 writer.WriteEndElement();
@@ -283,18 +277,37 @@ namespace GradesPrototype.Views
                 btnAddGrade.Visibility = Visibility.Visible;
             }
 
-            // Find all the grades for the student
-            List<Grade> grades = new List<Grade>();
-            foreach (Grade grade in DataSource.Grades)
-            {
-                if (grade.StudentID == SessionContext.CurrentStudent.StudentID)
-                {
-                    grades.Add(grade);
-                }
-            }
+            // TODO: Exercise 2: Task 1a: Find all the grades for the student.
             
-            // Display the grades in the studentGrades ItemsControl by using databinding
-            studentGrades.ItemsSource = grades;
+
+            // TODO: Exercise 2: Task 1b: Display the grades in the studentGrades ItemsControl by using databinding
+            
         }
+    }
+
+    // Value converter that converts the integer subject id into the string subject name, for display purposes
+    [ValueConversion(typeof(string), typeof(int))]
+    class SubjectConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter,
+                              System.Globalization.CultureInfo culture)
+        {
+            // TODO: Exercise 2: Task 2a: Convert the subject ID provided in the value parameter.
+
+            // TODO: Exercise 2: Task 2b: Return the subject name or the string "N/A".
+
+
+            return value;
+        }
+
+        #region Predefined code
+
+        public object ConvertBack(object value, Type targetType, object parameter,
+                                  System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
